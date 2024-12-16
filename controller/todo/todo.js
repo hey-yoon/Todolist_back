@@ -56,7 +56,15 @@ const checkTodo = async (req, res) => {
 
 // 리스트 삭제(DELETE)
 const deleteTodo = async(req,res)=>{
-
+    try{
+        const {id} = req.body;
+        await Todo.deleteOne({id});
+        res.status(200).json({message:"삭제성공"});
+    }
+    catch(error){
+        console.error("오류 발생:",error);
+        res.status(500).json({error:"데이터베이스 오류"})
+    }
 }
 
 // 타이틀 수정(PUT)
