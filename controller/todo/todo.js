@@ -69,7 +69,15 @@ const deleteTodo = async(req,res)=>{
 
 // 타이틀 수정(PUT)
 const modifyTodo = async(req,res)=>{
-
+    try{
+        const {id,isChecked,title} = req.body
+        await Todo.updateOne({id},{title,isChecked});
+        res.status(200).json({message:"수정완료"})
+    }
+    catch(error){
+        console.error("오류발생:",error);
+        res.status(500).json({error:"데이터베이스 오류"})
+    }
 }
 
 export {insertTodo,checkTodo,deleteTodo,modifyTodo}
