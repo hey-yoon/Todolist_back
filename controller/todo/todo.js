@@ -5,8 +5,9 @@ const insertTodo = async(req,res)=>{
     try{
         const {id,title,isChecked} = req.body;
         const add = await Todo.create({ id, title, isChecked });
-        res.json(add);
+        res.status(201).json(add);
     } catch (error){
+        console.error(error)
         res.status(500).json({ error: "데이터베이스 오류" });
     }
 }

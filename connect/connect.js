@@ -8,7 +8,7 @@ dotenv.config();
 // 암호화 되어있는 key들 (나만 봐야하는 것) / .gitignore 파일: git에 올라가면 안되는거
 
 const connection_url = process.env.CONNECT_URL;
-console.log(connection_url)
+// console.log(connection_url)
 
 const connect = async () => {
   // 배포환경이 아니라면,
