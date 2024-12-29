@@ -1,6 +1,6 @@
 import express from 'express';
 import { index } from '../controller/index.js'; //확장자 확인
-// import userRouter from './user/userRouter.js';
+import userRouter from './user/userRouter.js';
 // import authRouter from './auth/authRouter.js';
 import todoRouter from './todo/todoRouter.js';
 //app에서 use로 가로채서 rootRouter에서 경로 처리
@@ -18,7 +18,7 @@ rootRouter.get("/",index);
 // rootRouter.put("/",index);
 
 // 또 가로채서, /user 경로로 들어오면 userRouter 함수 실행
-// rootRouter.use("/user",userRouter);
+rootRouter.use("/user",userRouter);
 // rootRouter.use("/auth",authRouter);
 rootRouter.use("/todo",todoRouter);
 
