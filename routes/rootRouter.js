@@ -18,7 +18,7 @@ rootRouter.get("/",index);
 // rootRouter.put("/",index);
 
 // 또 가로채서, /user 경로로 들어오면 userRouter 함수 실행
-rootRouter.use("/user",userRouter);
+// rootRouter.use("/user",userRouter);
 // rootRouter.use("/auth",authRouter);
 rootRouter.use("/todo",todoRouter);
 
