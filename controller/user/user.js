@@ -1,5 +1,6 @@
 import User from "../../models/user_schema.js";
 
+// 회원가입 로직
 const registerUser = async(req,res) => {
     // 작성한 email,password를 가져와서
     const {email,password} = req.body;
@@ -31,8 +32,12 @@ const registerUser = async(req,res) => {
     }
 }
 
+// 로그인 로직
 const loginUser = (req,res) => {}
+
 const updateUser = (req,res) => {}
+
+// 탈퇴 로직
 const deleteUser = (req,res) => {}
 
 export {registerUser,loginUser,updateUser,deleteUser}
