@@ -1,3 +1,4 @@
+import { read } from "fs";
 import User from "../../models/user_schema.js";
 
 // 회원가입 로직
@@ -33,7 +34,36 @@ const registerUser = async(req,res) => {
 }
 
 // 로그인 로직
-const loginUser = (req,res) => {}
+const loginUser = async(req,res) => {
+    console.log(req.body)
+    const findUser = await User.findOne({email: req.body.email})
+
+    if(!findUser){
+        return res.status(401).json({
+            loginSuccess: false,
+            message: "존재하지 않는 이메일입니다."
+        })
+    }
+    else{
+        // 비밀번호 검증
+        const passwordMatch = req.body.password === findUser.password;
+        if(!passwordMatch){
+            return res.status(401).json({
+                loginSuccess: false,
+                message: "비밀번호가 일치하지 않습니다."
+            })
+        }
+
+        // 민감한 정보를 제거
+        const {password, ...user} = findUser;
+        console.log(user)
+        return res.status(200).json({
+            user,
+            loginSuccess: true,
+            message: "로그인이 완료되었습니다."
+        })
+    }
+}
 
 const updateUser = (req,res) => {}
 
