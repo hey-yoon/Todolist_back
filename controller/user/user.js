@@ -36,7 +36,7 @@ const registerUser = async(req,res) => {
 // 로그인 로직
 const loginUser = async(req,res) => {
     console.log(req.body)
-    const findUser = await User.findOne({email: req.body.email})
+    const findUser = await User.findOne({email: req.body.email}).lean()
     // 만약 user가 존재하지 않다면
     if(!findUser){
         return res.status(401).json({
