@@ -37,16 +37,19 @@ const registerUser = async(req,res) => {
 const loginUser = async(req,res) => {
     console.log(req.body)
     const findUser = await User.findOne({email: req.body.email})
-
+    // 만약 user가 존재하지 않다면
     if(!findUser){
         return res.status(401).json({
             loginSuccess: false,
             message: "존재하지 않는 이메일입니다."
         })
     }
+    // 만약 user가 존재한다면
     else{
         // 비밀번호 검증
         const passwordMatch = req.body.password === findUser.password;
+
+        //만약 비밀번호가 일치하지 않는다면
         if(!passwordMatch){
             return res.status(401).json({
                 loginSuccess: false,
@@ -54,6 +57,7 @@ const loginUser = async(req,res) => {
             })
         }
 
+        //만약 비밀번호가 일치하다면
         // 민감한 정보를 제거
         const {password, ...user} = findUser;
         console.log(user)
