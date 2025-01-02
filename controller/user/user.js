@@ -69,9 +69,20 @@ const loginUser = async(req,res) => {
     }
 }
 
-const updateUser = (req,res) => {}
+// 업데이트 로직
+const updateUser = async(req,res) => {
+    req.body.email
+    const findUser = await User.findOne({email: req.body.email})
+    const updateUser = await User.updateOne(findUser,{
+        // email: req.body.email,
+        // name: req.body.name
+    })
+}
 
 // 탈퇴 로직
-const deleteUser = (req,res) => {}
+const deleteUser = async(req,res) => {
+    const user = await User.findOne({email: req.body.email});
+    const DeleteUser = await User.deleteOne(user);
+}
 
 export {registerUser,loginUser,updateUser,deleteUser}
